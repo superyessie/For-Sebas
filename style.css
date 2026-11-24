@@ -1,0 +1,251 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #100d17;
+    color: #eadbea;
+    font-family: Georgia, serif;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.pantalla {
+    display: none;
+    min-height: 100vh;
+    padding: 50px 20px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+}
+
+.pantalla.activa {
+    display: flex;
+    animation: aparecer 1s ease;
+}
+
+h1 {
+    color: #e8c6df;
+    text-shadow: 0 0 15px #8e527d;
+}
+
+p {
+    line-height: 1.8;
+}
+
+.sobre {
+    font-size: 75px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.4s;
+}
+
+.sobre:hover {
+    transform: scale(1.2) rotate(-8deg);
+}
+
+.instruccion {
+    color: #bda5bd;
+    font-size: 14px;
+}
+
+button:not(.sobre) {
+    background: #321d35;
+    color: #f3ddec;
+    border: 1px solid #a56c99;
+    padding: 13px 25px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+    transition: 0.3s;
+}
+
+button:not(.sobre):hover {
+    background: #70466b;
+    box-shadow: 0 0 15px #a56c99;
+    transform: translateY(-3px);
+}
+
+.papel {
+    background: #f0e5d8;
+    color: #453340;
+    max-width: 650px;
+    width: 100%;
+    padding: 35px;
+    border-radius: 5px;
+    text-align: left;
+    box-shadow: 0 0 35px #8d527b44;
+    line-height: 1.8;
+}
+
+.papel h2 {
+    text-align: center;
+    color: #794c6d;
+}
+
+.firma {
+    text-align: right;
+    font-style: italic;
+    margin-top: 30px;
+}
+
+.preguntaTexto {
+    font-size: 26px;
+    color: #f0d4e9;
+}
+
+.finalTexto {
+    max-width: 500px;
+    font-size: 25px;
+    color: #eac9e1;
+    line-height: 1.6;
+}
+
+#estrellas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.estrella {
+    position: absolute;
+    color: #f8d9ee;
+    animation: brillar 2s infinite alternate;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes brillar {
+    from {
+        opacity: 0.2;
+        transform: scale(0.7);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+@media (max-width: 600px) {
+    .papel {
+        padding: 22px;
+        font-size: 15px;
+    }
+
+    .preguntaTexto {
+        font-size: 22px;
+    }
+}
+
+/* SOBRE ANIMADO */
+
+.sobre {
+    position: relative;
+    width: 250px;
+    height: 170px;
+    margin: 45px auto;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    perspective: 800px;
+    overflow: visible;
+}
+
+.sobre-cuerpo {
+    position: absolute;
+    inset: 0;
+    background: #54263f;
+    border: 2px solid #a66b8c;
+    border-radius: 5px;
+    z-index: 2;
+}
+
+/* SOLAPA DEL SOBRE */
+
+.solapa {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #773b5b;
+    clip-path: polygon(0 0, 100% 0, 50% 58%);
+    transform-origin: top;
+    transition: transform 0.8s ease;
+    z-index: 4;
+}
+
+/* SELLO DE CERA */
+
+.sello {
+    position: absolute;
+    top: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 38px;
+    height: 38px;
+    background: #a52e4c;
+    color: #f7dce7;
+    border: 2px solid #d58ba3;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    box-shadow: 0 0 12px #b64c75;
+}
+
+/* CARTA QUE SALE */
+
+.carta-saliendo {
+    position: absolute;
+    width: 85%;
+    height: 140px;
+    left: 7.5%;
+    bottom: 5px;
+    background: #f0e5d8;
+    border: 1px solid #d4b9c7;
+    border-radius: 3px;
+    z-index: 1;
+    transition: transform 1s ease;
+}
+
+/* ANIMACIÓN AL ABRIR */
+
+.sobre.abierto .solapa {
+    transform: rotateX(180deg);
+    z-index: 0;
+}
+
+.sobre.abierto .sello {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.sobre.abierto .carta-saliendo {
+    transform: translateY(-105px);
+}
+.sobre:hover {
+    transform: none;
+    background: transparent;
+    box-shadow: none;
+}
